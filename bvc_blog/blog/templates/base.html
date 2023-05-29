@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Project</title>
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}BVCage{% endblock %}</title>
+  </head>
 
-    <body>
-    {% block content %}
-    {% endblock content %}
-    </body>
+  <body>
+    <main>
+      {% block content %}
+      {% endblock content %}
+    </main>
+  </body>
 </html>
