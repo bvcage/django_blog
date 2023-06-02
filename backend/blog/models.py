@@ -48,7 +48,7 @@ class SocialMediaPlatform(models.Model):
 class User(models.Model):
     username = models.CharField(max_length=255)
     email = models.EmailField()
-    password = models.PasswordField(max_length=50)
+    password = models.CharField(max_length=50)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     profile_description = models.TextField()
