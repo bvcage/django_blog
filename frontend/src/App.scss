@@ -1,0 +1,9 @@
+@import '~bootstrap/scss/bootstrap';
+
+html {
+  scroll-behavior: smooth;
+}
+
+div.section {
+  min-height: 100vh;
+}
