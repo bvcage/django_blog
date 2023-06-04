@@ -7,3 +7,22 @@ html {
 div.section {
   min-height: 100vh;
 }
+
+div.static-left {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  align-items: end;
+  padding: 1rem;
+  padding-bottom: 3rem;
+  width: calc(100% / 12);
+}
+
+div.static-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: space-around;
+  padding: 1rem;
+}

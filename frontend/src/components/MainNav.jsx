@@ -6,7 +6,7 @@ function MainNav () {
   const location = useLocation()
 
   return (
-    <Navbar sticky='top' expand='lg'>
+    <Navbar sticky='top' expand='md'>
       <Container fluid>
         <Navbar.Brand>B.V.Cage</Navbar.Brand>
         <Navbar.Toggle aria-controls='main-navbar' />
