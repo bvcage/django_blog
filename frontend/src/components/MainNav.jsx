@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import { useLocation } from 'react-router-dom'
+import { Button, Container, Nav, Navbar } from 'react-bootstrap'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 function MainNav () {
   const location = useLocation()
+  const navigate = useNavigate()
 
   return (
     <Navbar sticky='top' expand='md'>
@@ -19,6 +20,7 @@ function MainNav () {
             <Nav.Link href='#media' active={location.hash === '#media'}>Media</Nav.Link>
             <Nav.Link href='#resume' active={location.hash === '#resume'}>Resume</Nav.Link>
             <Nav.Link href='#contact' active={location.hash === '#contact'}>Contact</Nav.Link>
+            <Button onClick={()=>navigate('blog')}>Blog</Button>
           </Nav>
         </Navbar.Collapse>
       </Container>

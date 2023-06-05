@@ -18,7 +18,7 @@ function App () {
           element: <Main />
         },
         {
-          path: '/media',
+          path: '/blog',
           element: <Blog />
         }
       ]
