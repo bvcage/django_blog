@@ -5,6 +5,9 @@ html {
 }
 
 div.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
@@ -25,4 +28,13 @@ div.static-footer {
   right: 0;
   justify-content: space-around;
   padding: 1rem;
+}
+
+div.project-card {
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+div.project-card:hover {
+  transform: scale(1.05);
 }

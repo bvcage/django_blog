@@ -16,7 +16,9 @@ function SectionTemplate (props) {
 
   return (
     <Container fluid id={props.hash} className='section' ref={ref}>
-      <p>{props.content}</p>
+      <Container>
+        {props.content}
+      </Container>
     </Container>
   )
 }

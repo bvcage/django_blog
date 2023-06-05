@@ -8,7 +8,7 @@ function MainNav () {
   return (
     <Navbar sticky='top' expand='md'>
       <Container fluid>
-        <Navbar.Brand>B.V.Cage</Navbar.Brand>
+        <Navbar.Brand>Bailey Cage</Navbar.Brand>
         <Navbar.Toggle aria-controls='main-navbar' />
         <Navbar.Collapse id='main-navbar'>
           <Nav className='me-auto' />
