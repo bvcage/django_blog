@@ -1,0 +1,59 @@
+{"projects": [
+  {
+    "title": "kniched",
+    "slug": "kniched",
+    "image": "https://i.ibb.co/FsvcBSd/logo512.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/kniched/main/README.md",
+    "summary": "app for tracking progress of needle craft projects",
+    "github": "https://github.com/bvcage/kniched"
+  },
+  {
+    "title": "mobile weather app",
+    "slug": "mobile-weather-app",
+    "image": "https://i.ibb.co/d6370Zd/IMG-2497.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/weather-app/main/README.md",
+    "summary": "display weather for user-entered postal code using OpenWeather API data",
+    "github": "https://github.com/bvcage/weather-app"
+  },
+  {
+    "title": "travel shepherd",
+    "slug": "travel-shepherd",
+    "image": "https://i.ibb.co/2y9j6Tv/ts-img.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/travel-shepherd/main/README.md",
+    "summary": "app for planning group trips",
+    "github": "https://github.com/bvcage/travel-shepherd"
+  },
+  {
+    "title": "vibeify",
+    "slug": "vibeify",
+    "image": "https://i.ibb.co/V30GSnY/vibeify-img.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/vibeify/main/README.md",
+    "description": "I created Vibeify with my two group members during phase 2 of flatiron.",
+    "summary": "app to reshuffle your Spotify playlists based on audio characteristics",
+    "github": "https://github.com/bvcage/vibeify"
+  },
+  {
+    "title": "blockbuster reboot",
+    "slug": "blockbuster-reboot",
+    "image": "https://i.ibb.co/PrSj7YC/bbr-img.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/phase-3-project-react-frontend/main/README.md",
+    "summary": "recreation of BlockBuster cashier interface that allows for inventory management",
+    "github": "https://github.com/bvcage/phase-3-project-react-frontend"
+  },
+  {
+    "title": "maw2paw",
+    "slug": "maw2paw",
+    "image": "https://i.ibb.co/5rNn0SZ/m2p-img.png",
+    "readme": "https://raw.githubusercontent.com/bvcage/maw2paw/main/README.md",
+    "summary": "animal hospital client management application",
+    "github": "https://github.com/bvcage/maw2paw"
+  },
+  {
+    "title": "weather forecaster",
+    "slug": "weather",
+    "image": "https://i.ibb.co/Rj13RjN/weather2.png",
+    "readme": "https://raw.githubusercontent.com/AndyDziabo/project1/main/README.md",
+    "summary": "app to check weather forecast for zip code",
+    "github": "https://github.com/AndyDziabo/project1"
+  }
+]}
