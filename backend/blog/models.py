@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from datetime import datetime
@@ -5,9 +6,12 @@ from datetime import datetime
 class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField()
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     comments_enabled = models.BooleanField()
     created_TS = models.DateTimeField(default=datetime.now, blank=True)
+    featured = models.BooleanField()
+    preview = models.CharField(max_length=255)
 
     def save(self, *args, **kwargs):
         original_slug = slugify(self.title)
@@ -35,20 +39,20 @@ class BlogPostTag(models.Model):
 
 class BlogPostLike(models.Model):
     blog_post_id = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
+    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
 class BlogPostFavorite(models.Model):
     blog_post_id = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     blog_post_id = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
+    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     content = models.TextField()
 
 class CommentLike(models.Model):
     comment_id = models.ForeignKey(Comment, on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
+    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
 class Inquiry(models.Model):
     first_name = models.CharField(max_length=255)
@@ -66,7 +70,7 @@ class SocialMediaPlatform(models.Model):
     icon = models.CharField(max_length=255)
     description = models.TextField()
 
-class User(models.Model):
+class UserProfile(models.Model):
     username = models.CharField(max_length=255)
     email = models.EmailField()
     password = models.CharField(max_length=50)
@@ -77,5 +81,5 @@ class User(models.Model):
 
 class UserSocialMedia(models.Model):
     platform_id = models.ForeignKey(SocialMediaPlatform, on_delete=models.CASCADE)
-    user_id = models.ForeignKey("User", on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.TextField()

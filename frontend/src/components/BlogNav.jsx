@@ -10,7 +10,7 @@ function BlogNav () {
         <Navbar.Collapse id='main-navbar'>
           <Nav className='me-auto' />
           <Nav>
-            <Nav.Link href='/'>Home</Nav.Link>
+            <Nav.Link href='/blog'>Home</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

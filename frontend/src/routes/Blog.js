@@ -10,7 +10,7 @@ function Blog () {
   }, [])
 
   const BlogCarouselItems = !!featured[0]
-    ? featured.map(item => <Carousel.Item><FeaturedBlogItem post={item} /></Carousel.Item>)
+    ? featured.map(item => <Carousel.Item key={item.id}><FeaturedBlogItem post={item} /></Carousel.Item>)
     : null
   
   return (

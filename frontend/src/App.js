@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import RootTemplate from './templates/RootTemplate'
 import Blog from './routes/Blog'
+import BlogPost from './routes/BlogPost'
 import Main from './routes/Main'
 
 import './App.scss'
@@ -14,12 +15,22 @@ function App () {
       element: <RootTemplate />,
       children: [
         {
-          path: '/',
+          path: '',
           element: <Main />
         },
         {
-          path: '/blog',
-          element: <Blog />
+          path: 'blog',
+          // element: <Blog />,
+          children: [
+            {
+              path: '',
+              element: <Blog />
+            },
+            {
+              path: ':slug',
+              element: <BlogPost />
+            }
+          ]
         }
       ]
     }
