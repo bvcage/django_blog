@@ -38,3 +38,32 @@ div.project-card {
 div.project-card:hover {
   transform: scale(1.05);
 }
+
+div.blog-carousel {
+  height: 400px;
+  position: relative;
+  background-color: black;
+  color: white;
+
+  .carousel-inner,
+  .carousel-item {
+    height: 100%;
+  }
+
+  .featured-blog-item {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+div.blog-nav-well {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid black 1px;
+  min-height: 3rem;
+}
