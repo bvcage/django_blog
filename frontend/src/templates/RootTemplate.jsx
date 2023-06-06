@@ -1,11 +1,14 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 
+import BlogNav from '../components/BlogNav'
 import MainNav from '../components/MainNav'
 import Socials from '../components/Socials'
 
 function RootTemplate () {
+  const location = useLocation()
+  
   return (
     <Container fluid>
       <Row>
@@ -13,7 +16,9 @@ function RootTemplate () {
           <Socials />
         </Col>
         <Col>
-          <MainNav />
+          {
+            location.pathname === '/' ? <MainNav /> : <BlogNav />
+          }
           <Outlet />
         </Col>
         <Col sm={1} />
