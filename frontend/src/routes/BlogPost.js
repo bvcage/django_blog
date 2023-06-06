@@ -2,10 +2,12 @@ import React from 'react'
 import { Col, Container, Placeholder, Row } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import LikeBtn from '../components/LikeBtn'
+import FavBtn from '../components/FavBtn'
 
 function BlogPost (props) {
   const location = useLocation()
   const slug = location.pathname.split('/').pop()
+  const [fav, setFav] = React.useState(false)
   const [liked, setLiked] = React.useState(false)
   const [loaded, setLoaded] = React.useState(false)
   const [post, setPost] = React.useState({})
@@ -17,6 +19,7 @@ function BlogPost (props) {
     })).catch(err => setLoaded(true))
   }, [slug])
 
+  const toggleFav = () => {setFav(!fav)}
   const toggleLike = () => {setLiked(!liked)}
 
   const Skeleton = (
@@ -40,6 +43,9 @@ function BlogPost (props) {
       <Row className='mt-2'>
         <Col>
           <LikeBtn fill={liked} onClick={toggleLike} />
+        </Col>
+        <Col>
+          <FavBtn fill={fav} onClick={toggleFav} />
         </Col>
       </Row>
     </Container>
