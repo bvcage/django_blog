@@ -9,9 +9,12 @@ class BlogPost(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
     comments_enabled = models.BooleanField()
-    created_TS = models.DateTimeField(default=datetime.now, blank=True)
+    created_TS = models.DateTimeField(default=datetime.now)
     featured = models.BooleanField()
     preview = models.CharField(max_length=255)
+    subtitle = models.CharField(max_length=255)
+    summary = models.CharField(max_length=255)
+    updated_TS = models.DateTimeField(default=datetime.now, blank=True)
 
     def save(self, *args, **kwargs):
         original_slug = slugify(self.title)
@@ -71,13 +74,10 @@ class SocialMediaPlatform(models.Model):
     description = models.TextField()
 
 class UserProfile(models.Model):
-    username = models.CharField(max_length=255)
-    email = models.EmailField()
-    password = models.CharField(max_length=50)
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    profile_description = models.TextField()
-    profile_image = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField()
+    image = models.CharField(max_length=255)
+    location = models.CharField(max_length=255)
 
 class UserSocialMedia(models.Model):
     platform_id = models.ForeignKey(SocialMediaPlatform, on_delete=models.CASCADE)
