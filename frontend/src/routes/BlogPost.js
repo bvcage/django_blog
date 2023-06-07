@@ -3,6 +3,7 @@ import { Col, Container, Placeholder, Row } from 'react-bootstrap'
 import { useLocation } from 'react-router-dom'
 import LikeBtn from '../components/LikeBtn'
 import FavBtn from '../components/FavBtn'
+import AuthorInfo from '../components/AuthorInfo'
 
 function BlogPost (props) {
   const location = useLocation()
@@ -37,7 +38,8 @@ function BlogPost (props) {
   return (
     <Container>
       <h1>{post.title}</h1>
-      <h4>@{post.author.username}</h4>
+      <h2>{post.subtitle}</h2>
+      <h3>{post.author.first_name} {post.author.last_name} <span style={{fontSize: '1rem'}}>@{post.author.username}</span></h3>
       <h6>{new Date(post.created_TS).toLocaleString()}</h6>
       {post.content}
       <Row className='mt-2'>
@@ -46,6 +48,11 @@ function BlogPost (props) {
         </Col>
         <Col>
           <FavBtn fill={fav} onClick={toggleFav} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <AuthorInfo author={post.author} />
         </Col>
       </Row>
     </Container>
