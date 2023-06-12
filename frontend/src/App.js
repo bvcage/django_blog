@@ -5,6 +5,7 @@ import RootTemplate from './templates/RootTemplate'
 import Blog from './routes/Blog'
 import BlogPost from './routes/BlogPost'
 import Main from './routes/Main'
+import UserAccount from './routes/UserAccount'
 
 import './App.scss'
 
@@ -20,11 +21,14 @@ function App () {
         },
         {
           path: 'blog',
-          // element: <Blog />,
           children: [
             {
               path: '',
               element: <Blog />
+            },
+            {
+              path: 'account',
+              element: <UserAccount />
             },
             {
               path: ':slug',

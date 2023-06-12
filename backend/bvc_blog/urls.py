@@ -4,11 +4,8 @@ from django.views.generic.base import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 
-from blog.views import SignUpView
-
 urlpatterns = [
     path('account/', include('django.contrib.auth.urls')),
-    path('account/signup', SignUpView.as_view(), name='signup'),
     path('api-auth/', include('rest_framework.urls')),
     path('api/blog/', include('blog.urls')),
     path('admin/', admin.site.urls),

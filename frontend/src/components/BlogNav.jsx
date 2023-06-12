@@ -11,6 +11,7 @@ function BlogNav () {
           <Nav className='me-auto' />
           <Nav>
             <Nav.Link href='/blog'>Home</Nav.Link>
+            <Nav.Link href='/blog/account'>Account</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
