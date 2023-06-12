@@ -33,7 +33,7 @@ function UserAccount () {
     <Container>
       { 
         Object.keys(user).length > 0
-          ? <UserProfile user={user} onLogout={clearUser} />
+          ? <UserProfile user={user} updateUser={setUser} onLogout={clearUser} />
           : showSignup
             ? <SignupForm setCurrentUser={setUser} showLogin={()=>setShowSignup(false)} />
             : <LoginForm setCurrentUser={setUser} showSignup={()=>setShowSignup(true)} />

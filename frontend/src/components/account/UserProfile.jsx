@@ -1,9 +1,10 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import LogoutBtn from './LogoutBtn'
+import EditModal from './EditModal'
 
 function UserProfile (props) {
-  const { user, onLogout } = props
+  const { user, updateUser, onLogout } = props
   const [profile, setProfile] = React.useState({})
 
   React.useEffect(() => {
@@ -42,6 +43,7 @@ function UserProfile (props) {
           <p>{profile.bio}</p>
         </Col>
       </Row>
+      <EditModal user={user} profile={profile} updateUser={updateUser} updateProfile={setProfile} />
       <LogoutBtn onLogout={onLogout} />
     </Container>
   )

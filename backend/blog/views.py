@@ -28,6 +28,12 @@ class UserView (APIView):
     def get(self, request):
         serializer = UserSerializer(request.user)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)
+    
+    def patch(self, request):
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
 
 class UserProfileView (APIView):
     permission_classes = (permissions.IsAuthenticated, )
@@ -37,6 +43,13 @@ class UserProfileView (APIView):
         profile = UserProfile.objects.get(user=request.user)
         serializer = UserProfileSerializer(profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    def patch(self, request):
+        profile = UserProfile.objects.get(user=request.user)
+        serializer = UserProfileSerializer(profile, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
     
 class UserRegisterView(APIView):
     permission_classes = (permissions.AllowAny, )
