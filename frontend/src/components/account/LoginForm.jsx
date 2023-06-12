@@ -1,7 +1,9 @@
 import React from 'react'
 import { Button, Col, Container, FloatingLabel, Form, Row, Stack } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-function LoginForm () {
+function LoginForm (props) {
+  const { setCurrentUser, showSignup } = props
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [validated, setValidated] = React.useState(false)
@@ -16,7 +18,7 @@ function LoginForm () {
         },
         body: JSON.stringify({'email': email, 'password': password})
       }).then(res => {
-        if (res.ok) res.json().then(console.log)
+        if (res.ok) res.json().then(user => setCurrentUser(user))
         else res.json().then(console.log)
       }).catch(err => {
         console.log(err)
@@ -51,10 +53,13 @@ function LoginForm () {
           <Row>
             <Col />
             <Col xs={6} md={4} style={{textAlign: 'center'}}>
-              <Button type='submit' style={{width: '100%'}}>Submit</Button>
+              <Button type='submit' style={{width: '100%'}}>Login</Button>
             </Col>
             <Col style={{textAlign: 'right'}} />
           </Row>
+        </Container>
+        <Container className='p-0' style={{textAlign: 'center'}}>
+          <p>New user? <Link onClick={showSignup}>Sign up here</Link>.</p>
         </Container>
       </Stack>
     </Form>

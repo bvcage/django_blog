@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Col, Container, FloatingLabel, Form, Row, Stack } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const EMPTY_FORM = {
   first_name: '',
@@ -10,7 +11,8 @@ const EMPTY_FORM = {
   password2: '',
 }
 
-function SignupForm () {
+function SignupForm (props) {
+  const { setCurrentUser, showLogin } = props
   const [signup, setSignup] = React.useState(EMPTY_FORM)
   const [validated, setValidated] = React.useState(false)
 
@@ -44,7 +46,7 @@ function SignupForm () {
             },
             body: JSON.stringify(loginObj)
           }).then(res => {
-            if (res.ok) res.json().then(console.log)
+            if (res.ok) res.json().then(user => setCurrentUser(user))
             else res.json().then(cErr => console.log(cErr.errors))
           }).catch(sErr => {
             console.log(sErr)
@@ -63,7 +65,6 @@ function SignupForm () {
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit} className='account-form'>
       <Stack gap={2}>
-        <h2>Sign up</h2>
         <FloatingLabel label='First name'>
           <Form.Control
             name='first_name'
@@ -129,12 +130,15 @@ function SignupForm () {
           <Row>
             <Col />
             <Col xs={6} md={4} style={{textAlign: 'center'}}>
-              <Button type='submit' style={{width: '100%'}}>Submit</Button>
+              <Button type='submit' style={{width: '100%'}}>Sign up</Button>
             </Col>
             <Col style={{textAlign: 'right'}}>
               <Button variant='outline-secondary' className='ms-2' onClick={resetForm}>Clear</Button>
             </Col>
           </Row>
+        </Container>
+        <Container className='p-0' style={{textAlign: 'center'}}>
+          <p>Have an account? <Link onClick={showLogin}>Login here</Link>.</p>
         </Container>
       </Stack>
     </Form>
