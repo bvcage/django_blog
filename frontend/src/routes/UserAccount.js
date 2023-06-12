@@ -2,8 +2,8 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 
 import LoginForm from '../components/account/LoginForm'
-import LogoutBtn from '../components/account/LogoutBtn'
 import SignupForm from '../components/account/SignupForm'
+import UserProfile from '../components/account/UserProfile'
 
 function UserAccount () {
   const [showSignup, setShowSignup] = React.useState(false)
@@ -29,13 +29,11 @@ function UserAccount () {
       })
   }, [])
 
-  console.log(user)
-
   return (
     <Container>
       { 
         Object.keys(user).length > 0
-          ? <LogoutBtn onLogout={clearUser} />
+          ? <UserProfile user={user} onLogout={clearUser} />
           : showSignup
             ? <SignupForm setCurrentUser={setUser} showLogin={()=>setShowSignup(false)} />
             : <LoginForm setCurrentUser={setUser} showSignup={()=>setShowSignup(true)} />

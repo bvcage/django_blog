@@ -29,6 +29,15 @@ class UserView (APIView):
         serializer = UserSerializer(request.user)
         return Response({'user': serializer.data}, status=status.HTTP_200_OK)
 
+class UserProfileView (APIView):
+    permission_classes = (permissions.IsAuthenticated, )
+    authentication_classes = (SessionAuthentication, )
+
+    def get(self, request):
+        profile = UserProfile.objects.get(user=request.user)
+        serializer = UserProfileSerializer(profile)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 class UserRegisterView(APIView):
     permission_classes = (permissions.AllowAny, )
     serializer_class = UserRegisterSerializer
