@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootTemplate from './templates/RootTemplate'
 import Blog from './routes/Blog'
 import BlogPost from './routes/BlogPost'
+import Login from './routes/account/Login'
 import Main from './routes/Main'
-import UserAccount from './routes/UserAccount'
+import Profile from './routes/account/Profile'
+import Signup from './routes/account/Signup'
 
 import './App.scss'
 
@@ -28,7 +30,20 @@ function App () {
             },
             {
               path: 'account',
-              element: <UserAccount />
+              children: [
+                {
+                  path: '',
+                  element: <Profile />
+                },
+                {
+                  path: 'login',
+                  element: <Login />
+                },
+                {
+                  path: 'signup',
+                  element: <Signup />
+                }
+              ]
             },
             {
               path: ':slug',

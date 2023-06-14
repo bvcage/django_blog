@@ -11,7 +11,7 @@ const EMPTY_FORM = {
   password2: '',
 }
 
-function SignupForm (props) {
+function Signup (props) {
   const { setCurrentUser, showLogin } = props
   const [signup, setSignup] = React.useState(EMPTY_FORM)
   const [validated, setValidated] = React.useState(false)
@@ -138,11 +138,11 @@ function SignupForm (props) {
           </Row>
         </Container>
         <Container className='p-0' style={{textAlign: 'center'}}>
-          <p>Have an account? <Link onClick={showLogin}>Login here</Link>.</p>
+          <p>Have an account? <Link to='../login'>Login here</Link>.</p>
         </Container>
       </Stack>
     </Form>
   )
 }
 
-export default SignupForm
+export default Signup
