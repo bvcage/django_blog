@@ -1,9 +1,11 @@
 import React from 'react'
 import { Col, Container, Nav, Navbar, Offcanvas, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 import LogoutBtn from '../components/account/LogoutBtn'
 
 function BlogNav () {
+  const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const closeMenu = () => setMenuOpen(false)
@@ -23,6 +25,11 @@ function BlogNav () {
         setIsLoggedIn(false)
       })
   }, [])
+
+  function handleLogout () {
+    closeMenu()
+    navigate(0)
+  }
   
   const LoginOptions = (
     <React.Fragment>
@@ -74,7 +81,7 @@ function BlogNav () {
                     <Nav>
                       {isLoggedIn ? UserOptions : LoginOptions}
                     </Nav>
-                    {isLoggedIn ? <LogoutBtn onLogout={closeMenu} /> : null}
+                    {isLoggedIn ? <LogoutBtn onLogout={handleLogout} /> : null}
                   </Container>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>

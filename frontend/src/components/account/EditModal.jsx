@@ -1,10 +1,13 @@
 import React from 'react'
 import { Button, Col, Container, Form, InputGroup, Modal, Row } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const CSRF = getCookie('csrftoken')
 
 function EditModal (props) {
   const { user, profile, updateUser, updateProfile } = props
+  const navigate = useNavigate()
+  const [isAvailable, setIsAvailable] = React.useState(null)
   const [profileEdits, setProfileEdits] = React.useState(profile)
   const [userEdits, setUserEdits] = React.useState(user)
   const [validated, setValidated] = React.useState(false)
@@ -12,19 +15,42 @@ function EditModal (props) {
   const showModal = () => setShow(true)
   const hideModal = () => setShow(false)
 
+  function checkUsername (e) {
+    console.log('check')
+    if (userEdits.username === user.username) {
+      document.getElementById('username-input').setCustomValidity('')
+      setIsAvailable(true)
+    }
+    else {
+      fetch('/api/blog/user/'+userEdits.username)
+        .then(res => {
+          if (res.status === 404) {
+            document.getElementById('username-input').setCustomValidity('')
+            setIsAvailable(true)
+          }
+          else {
+            document.getElementById('username-input').setCustomValidity('Username already taken.')
+            setIsAvailable(false)
+          }
+        })
+    }
+  }
+
   function handleProfileChange (e) {
     setProfileEdits({...profileEdits, [e.target.name]: e.target.value})
   }
 
   function handleUserChange (e) {
     setUserEdits({...userEdits, [e.target.name]: e.target.value})
+    if (e.target.name === 'username') setIsAvailable(null)
   }
 
-  function cancelChanges (e) {
-    hideModal()
+  function clearChanges () {
+    if (show) hideModal()
     setValidated(false)
     setProfileEdits(profile)
     setUserEdits(user)
+    setIsAvailable(null)
   }
 
   function getChanges (original, edits) {
@@ -75,8 +101,9 @@ function EditModal (props) {
         })
       }
 
-      // close modal
+      // close modal & refresh
       hideModal()
+      navigate(0)
 
     } else if (!validated) setValidated(true)
   }
@@ -120,13 +147,19 @@ function EditModal (props) {
                   <InputGroup>
                     <InputGroup.Text>@</InputGroup.Text>
                     <Form.Control
+                      id='username-input'
                       name='username'
                       type='text'
                       required
                       value={userEdits.username}
                       onChange={handleUserChange}
                     />
-                    <Button variant='outline-secondary'>Check availability</Button>
+                    <Button
+                      variant={ isAvailable ? 'success' : isAvailable === false ? 'danger' : 'outline-secondary' }
+                      onClick={checkUsername}
+                      >
+                        { isAvailable ? 'Available' : isAvailable === false ? 'Not available' : 'Check availability' }
+                    </Button>
                   </InputGroup>
                 </Col>
               </Form.Group>
@@ -172,7 +205,7 @@ function EditModal (props) {
               <Row>
                 <Col />
                 <Col xs={3} className='pe-1'>
-                  <Button variant='outline-secondary' style={{width: '100%'}} onClick={cancelChanges}>Cancel</Button>
+                  <Button variant='outline-secondary' style={{width: '100%'}} onClick={clearChanges}>Cancel</Button>
                 </Col>
                 <Col xs={3} className='ps-1'>
                   <Button type='submit' variant='success' style={{width: '100%'}}>SAVE</Button>

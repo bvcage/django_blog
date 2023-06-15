@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 
-from .views import BlogPostListView, BlogPostDetailView, UserView, UserLoginView, UserLogoutView, UserProfileView, UserRegisterView
+from .views import BlogPostListView, BlogPostDetailView, UserView, UserLoginView, UserLogoutView, UserProfileView, UserRegisterView, UserUsernameView
 
 urlpatterns = [
     path('register', UserRegisterView.as_view(), name='register'),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('logout', UserLogoutView.as_view(), name='logout'),
     path('user', UserView.as_view(), name='user'),
     path('user-profile', UserProfileView.as_view(), name='user-profile'),
+    path('user/<username>', UserUsernameView.as_view(), name='user-username'),
     path('<slug>', BlogPostDetailView.as_view()),
     path('', BlogPostListView.as_view()),
 ]

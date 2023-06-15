@@ -1,4 +1,5 @@
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 from rest_framework import permissions, status
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.generics import ListAPIView, RetrieveAPIView
@@ -88,3 +89,9 @@ class UserLogoutView (APIView):
     def get(self, request):
         logout(request)
         return Response(status=status.HTTP_200_OK)
+
+class UserUsernameView (RetrieveAPIView):
+    queryset = User.objects.order_by('username')
+    serializer_class = UserSerializer
+    lookup_field = 'username'
+    permission_classes = (permissions.AllowAny, )
