@@ -4,9 +4,39 @@ import { Col, Container, Nav, Navbar, Offcanvas, Row } from 'react-bootstrap'
 import LogoutBtn from '../components/account/LogoutBtn'
 
 function BlogNav () {
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
   const closeMenu = () => setMenuOpen(false)
   const openMenu = () => setMenuOpen(true)
+
+  React.useEffect(() => {
+    fetch('/api/blog/user')
+      .then(res => {
+        if (res.ok) res.json().then(data => {
+          if (!!data.user) setIsLoggedIn(true)
+          else setIsLoggedIn(false)
+        })
+        else setIsLoggedIn(false)
+      })
+      .catch(err => {
+        console.log(err)
+        setIsLoggedIn(false)
+      })
+  }, [])
+  
+  const LoginOptions = (
+    <React.Fragment>
+      <Nav.Link href='/blog/account/login'>Login</Nav.Link>
+      <Nav.Link href='/blog/account/signup'>Sign up</Nav.Link>
+    </React.Fragment>
+  )
+
+  const UserOptions = (
+    <React.Fragment>
+      <Nav.Link href='/blog/account'>My Profile</Nav.Link>
+      <Nav.Link href='/blog/account'>Settings</Nav.Link>
+    </React.Fragment>
+  )
 
   return (
     <Container fluid className='p-0 m-0'>
@@ -42,10 +72,9 @@ function BlogNav () {
                 <Offcanvas.Body>
                   <Container className='p-0' style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%'}}>
                     <Nav>
-                      <Nav.Link href='/blog/account'>My Profile</Nav.Link>
-                      <Nav.Link href='/blog/account'>Settings</Nav.Link>
+                      {isLoggedIn ? UserOptions : LoginOptions}
                     </Nav>
-                    <LogoutBtn onLogout={closeMenu} />
+                    {isLoggedIn ? <LogoutBtn onLogout={closeMenu} /> : null}
                   </Container>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>

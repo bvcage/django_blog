@@ -10,6 +10,7 @@ import Profile from './routes/account/Profile'
 import Signup from './routes/account/Signup'
 
 import './App.scss'
+import Account from './routes/account/Account'
 
 function App () {
   const router = createBrowserRouter([
@@ -30,6 +31,7 @@ function App () {
             },
             {
               path: 'account',
+              element: <Account />,
               children: [
                 {
                   path: '',
