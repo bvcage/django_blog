@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Col, Container, FloatingLabel, Form, Row, Stack } from 'react-bootstrap'
+import { Button, Col, Container, FloatingLabel, Form, InputGroup, Row, Stack } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import CheckUsernameBtn from '../../components/account/CheckUsernameBtn'
 
 const EMPTY_FORM = {
   first_name: '',
@@ -96,16 +97,20 @@ function Signup (props) {
             onChange={handleChange}
           />
         </FloatingLabel>
-        <FloatingLabel label='Username'>
-          <Form.Control
-            name='username'
-            placeholder=' '
-            required
-            type='text'
-            value={signup.username}
-            onChange={handleChange}
-          />
-        </FloatingLabel>
+        <InputGroup>
+          <FloatingLabel label='Username'>
+            <Form.Control
+              id='username-input'
+              name='username'
+              placeholder=' '
+              required
+              type='text'
+              value={signup.username}
+              onChange={handleChange}
+            />
+          </FloatingLabel>
+          <CheckUsernameBtn requested={signup} />
+        </InputGroup>
         <FloatingLabel label='Password'>
           <Form.Control
             name='password'
